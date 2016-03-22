@@ -27,7 +27,6 @@ var questionSchema = mongoose.Schema({
   select:          {type: Number, default: 0},
   correct:         {type: Number, default: 0},
   wrong:           {type: Number, default: 0},
-  createTimestamp: {type: Number},
   updateTimestamp: {type: Number},
   random:          {type: Number},  // for random query
   options: [
@@ -42,9 +41,8 @@ var Question = mongoose.model('question', questionSchema);
 
 // 添加问题
 exports.createQuestion = (item) => {
-  item.createTimestamp = Date.now();
   item.random = Math.random();
-  return new Question(lodash.pick(item, 'content', 'options', 'answer', 'score', 'createTimestamp', 'random')).save();
+  return new Question(lodash.pick(item, 'content', 'options', 'answer', 'score', 'random')).save();
 };
 
 // 删除问题
@@ -91,7 +89,6 @@ exports.getQuestionList = (query) => {
 // exams
 var examSchema = mongoose.Schema({
   title:           {type: String},
-  createTimestamp: {type: Number},
   startTimestamp:  {type: Number},
   submitTimestamp: {type: Number},
   isDone:          {type: Boolean},
