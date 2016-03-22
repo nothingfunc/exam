@@ -1,107 +1,35 @@
 /**
- * Created by zhengguo.chen on 2016/3/21.
+ * Created by zhengguo.chen on 2016/3/23.
  */
 var mongoose = require('mongoose');
-var lodash = require('lodash');
+var _ = require('lodash');
 var Q = require('q');
+var CONFIG = require('../config.json');
+var common = require('../utils/common');
+var Question = require('./question').model;
+require('./base');
 
 var exports = {};
 
-//db connect
-const connectToDb = () => {
-  console.log('Try to connect to db');
-  mongoose.connect('mongodb://127.0.0.1/exam');
-};
-mongoose.connection.on('error', (err) => {
-  setTimeout(connectToDb, 3000);
-}).on('open', () => {
-  console.log('Connect to db successfully!');
-});
-connectToDb();
-
-
-// questions
-var questionSchema = mongoose.Schema({
-  content:         {type: String},
-  score:           {type: Number, default: 2}, // 2 6 5 8
-  select:          {type: Number, default: 0},
-  correct:         {type: Number, default: 0},
-  wrong:           {type: Number, default: 0},
-  updateTimestamp: {type: Number},
-  random:          {type: Number},  // for random query
-  options: [
-    {type: String}
-  ],
-  answer: [
-    {type: Number}
-  ]
-});
-
-var Question = mongoose.model('question', questionSchema);
-
-// 添加问题
-exports.createQuestion = (item) => {
-  item.random = Math.random();
-  return new Question(lodash.pick(item, 'content', 'options', 'answer', 'score', 'random')).save();
-};
-
-// 删除问题
-exports.removeQuestion = (id) => {
-  var conditions = {_id : id};
-  return Question.remove(conditions).then((docs) => {
-    return docs;
-  });
-};
-
-// 获取单个问题
-exports.getQuestion = (query) => {
-  return Question.find(query);
-};
-
-// 修改问题
-exports.updateQuestion = (id, item) => {
-  item.updateTimestamp = Date.now();
-  var conditions = {_id : id};
-  var update     = {$set : lodash.pick(item, 'content', 'options', 'answer', 'score', 'updateTimestamp')};
-  var options    = {upsert : false};
-  return Question.update(conditions, update, options).then((docs) => {
-    return docs;
-  });
-};
-
-// 获取问题列表，包含分页和查询
-exports.getQuestionList = (query) => {
-  return Q.all([
-    Question.count(),
-    Question.find()
-      .skip((query.pageIndex - 1) * query.pageSize)
-      .limit(query.pageSize)
-      .exec()
-  ]).then((docs) => {
-    return {
-      count: docs[0],
-      content: docs[1]
-    }
-  });
-};
-
-
 // exams
 var examSchema = mongoose.Schema({
-  title:           {type: String},
-  startTimestamp:  {type: Number},
-  submitTimestamp: {type: Number},
-  isDone:          {type: Boolean},
-  cost:            {type: Number}, // seconds
+  username:        {type: String, default: ''},
+  mobile:          {type: Number, default: 0},
+  examId:          {type: String},
+  title:           {type: String, default: ''},
+  startTimestamp:  {type: Number, default: 0},
+  submitTimestamp: {type: Number, default: 0},
+  isDone:          {type: Boolean, default: false},
+  cost:            {type: Number, default: 0}, // seconds
   score:           {type: Number, default: 0},
   passScore:       {type: Number, default: 0},
-  isPass:          {type: Boolean},
+  isPass:          {type: Boolean, default: false},
   questions: [
     {
       content:   {type: String},
       isCorrect: {type: Boolean},
       score:     {type: Number},
-      options: [,
+      options: [
         {type: String}
       ],
       answer:   [
@@ -113,19 +41,21 @@ var examSchema = mongoose.Schema({
     }
   ]
 });
+var Exam = mongoose.model('exam', examSchema);
 
-const getRandomQuestionsByScore = (score, limit) => {
-  // todo optimize random, these questions should be shuffle at sometimes
+// 获取questions
+const getRandomQuestionsByScore = (examType, score, limit) => {
+  // todo optimize random, these questions should be shuffled at sometimes
   var rand = Math.random();
-  var conditions = {score: score, random: {$gt: rand}};
-  var fields     = {content: 1, options: 1, answer: 1, score: 1};
+  var conditions = {examType:{$in: [examType, CONFIG.EXAM_TYPE.common]}, score: score, random: {$gt: rand}};
+  var fields = {content: 1, options: 1, answer: 1, score: 1};
   return Question.find(conditions, fields).limit(limit).then((items) => {
     var questions = items;
     if(items.length < limit) {
       limit = limit - items.length;
-      conditions = {score: score, random: {$lt: rand}};
+      conditions = {examType:{$in: [examType, CONFIG.EXAM_TYPE.common]}, score: score, random: {$lt: rand}};
       return Question.find(conditions, fields).limit(limit).then((items) => {
-        questions.concat(items);
+        questions = questions.concat(items);
         return questions;
       });
     } else {
@@ -134,13 +64,17 @@ const getRandomQuestionsByScore = (score, limit) => {
   });
 };
 
-// 创建试题
-exports.createExam = () => {
-  return Q.all([
-    getRandomQuestionsByScore(3, 10),
-    getRandomQuestionsByScore(6, 5),
-    getRandomQuestionsByScore(8, 5)
-  ]);
+// 生成试题
+exports.createExam = (item) => {
+  var jobs = CONFIG.EXAM_RULE.map((rule) => {
+    return getRandomQuestionsByScore(item.examType, rule.score, rule.count)
+  });
+  return Q.all(jobs).then((questionGroup) => {
+    var questions = _.flatten(questionGroup);
+    item.questions = questions;
+    item.examId = common.getExamId(item.username, item.mobile, Date.now());
+    return new Exam(_.pick(item, 'content', 'questions', 'examId')).save();
+  });
 };
 
 module.exports = exports;

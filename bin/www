@@ -2,7 +2,6 @@
 console.time('Start time');
 
 // babel register is to slow...
-console.log(process.env.API);
 if(!process.env.API) {
   require('babel-register')({
     presets: ['es2015', 'react']

@@ -13,15 +13,14 @@ require('./model/exam');
 
 var app = express();
 
+// view engine setup
 var engine = ReactEngine.server.create({
   /*
    see the complete server options spec here:
    https://github.com/paypal/react-engine#server-options-spec
    */
 });
-
 app.engine('.jsx', engine);
-// view engine setup
 app.set('views', path.join(__dirname, '../components/page'));
 app.set('view engine', 'jsx');
 

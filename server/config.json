@@ -5,9 +5,14 @@
     {"score": 6, "count": 5},
     {"score": 8, "count": 5}
   ],
-  "PASS_RULE": [
-    {"intern": 30},
-    {"primary": 50},
-    {"senior": 70}
-  ]
+  "PASS_RULE": {
+    "intern": 30,
+    "primary": 50,
+    "senior": 70
+  },
+  "EXAM_TYPE": {
+    "common": 0,
+    "java": 1,
+    "fe": 2
+  }
 }
