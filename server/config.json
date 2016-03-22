@@ -1,0 +1,13 @@
+{
+  "DB_NAME": "mongodb://127.0.0.1/exam",
+  "EXAM_RULE": [
+    {"score": 3, "count": 10},
+    {"score": 6, "count": 5},
+    {"score": 8, "count": 5}
+  ],
+  "PASS_RULE": [
+    {"intern": 30},
+    {"primary": 50},
+    {"senior": 70}
+  ]
+}
