@@ -28,6 +28,7 @@ module.exports = {
       path.join(NODE_MODULES, 'react-engine/lib/client')
     ],
     'index': path.join(SRC_PATH, 'index.js'),
+    'exam': path.join(SRC_PATH, 'exam.js'),
     'users': path.join(SRC_PATH, 'users.js'),
     'canvas': path.join(SRC_PATH, 'canvas.js'),
     //common style

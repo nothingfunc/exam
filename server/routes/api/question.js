@@ -1,12 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var jsonModel = require('../model/json');
-var questionModel = require('../model/question');
-var examModel = require('../model/exam');
-var response = require('../utils/response');
+var questionModel = require('../../model/question');
+var response = require('../../utils/response');
 var lodash = require('lodash');
 
-router.post('/question', function(req, res, next) {
+// 新增问题
+router.post('/', (req, res, next) => {
   questionModel.createQuestion(req.body).then((content) => {
     response.success(res, content, 'Saved questions successfully!');
   }).catch((err) => {
@@ -14,7 +13,8 @@ router.post('/question', function(req, res, next) {
   });
 });
 
-router.delete('/question/:id', function(req, res, next) {
+// 删除问题
+router.delete('/:id', (req, res, next) => {
   questionModel.removeQuestion({
     _id: req.params.id
   }).then((content) => {
@@ -24,15 +24,18 @@ router.delete('/question/:id', function(req, res, next) {
   });
 });
 
-router.get('/question/:id', function(req, res, next) {
-  questionModel.getQuestion(req.params.id).then((content) => {
+// 获取问题
+router.get('/:_id', (req, res, next) => {
+  //response.success(res, req.params._id, 'Get questions successfully!');
+  questionModel.getQuestion(req.params._id).then((content) => {
     response.success(res, content, 'Get questions successfully!');
   }).catch((err) => {
     response.error(res, err);
   });
 });
 
-router.put('/question/:id', function(req, res, next) {
+// 修改问题
+router.put('/:id', (req, res, next) => {
   console.log(req.body);
   questionModel.updateQuestion(req.params.id, req.body).then((items) => {
     response.success(res, items, 'Updated question successfully!');
@@ -41,41 +44,14 @@ router.put('/question/:id', function(req, res, next) {
   });
 });
 
-router.get('/questions/:pageIndex/:pageSize', function(req, res, next) {
+// 获取问题列表
+router.get('/list/:pageIndex/:pageSize', (req, res, next) => {
   req.params.pageIndex = (+req.params.pageIndex) || 1;
   req.params.pageSize = (+req.params.pageSize) || 20;
   questionModel.getQuestionList(req.params).then((items) => {
     response.success(res, items, 'Get questions successfully!');
   }).catch((err) => {
     response.error(res, err);
-  });
-});
-
-router.post('/exam', function(req, res, next) {
-  examModel.createExam(req.body).then((item) => {
-    response.success(res, item, 'Create exam successfully!');
-  }).catch((err) => {
-    response.error(res, err);
-  });
-});
-
-router.get('/q/create', function(req, res, next) {
-  jsonModel.createExam().then((item) => {
-    res.json({
-      code: 200,
-      data: item,
-      msg: 'Create exam successfully'
-    });
-  });
-});
-
-router.get('/q/get/:id', function(req, res, next) {
-  jsonModel.getExam(req.params.id).then((item) => {
-    res.json({
-      code: 200,
-      data: item,
-      msg: 'Get successfully'
-    });
   });
 });
 

@@ -4,6 +4,7 @@
     "canvas": "/js/canvas.js",
     "common": "/js/common.js",
     "components": "/js/components.js",
+    "exam": "/js/exam.js",
     "index": "/js/index.js",
     "users": "/js/users.js"
   },
@@ -11,6 +12,7 @@
     "canvas": "/css/canvas.css",
     "common": "/css/common.css",
     "components": "/css/components.css",
+    "exam": "/css/exam.css",
     "index": "/css/index.css",
     "users": "/css/users.css"
   },
@@ -23,6 +25,19 @@
     "./components/page/css/canvas.less": {
       "myCanvas": "canvas__myCanvas___1qHam"
     },
+    "./components/examControl/style.less": {
+      "questionList": "style__questionList___2x7sO",
+      "correct": "style__correct___f_RAq",
+      "wrong": "style__wrong___3qCuz",
+      "optionList": "style__optionList___LGt0Y",
+      "multiple": "style__multiple___fdbd9",
+      "radio": "style__radio___3SyJ9",
+      "selected": "style__selected___2ZC2M",
+      "score": "style__score___2matX",
+      "s1": "style__s1___yYCQO",
+      "s2": "style__s2___2kBgw",
+      "s3": "style__s3___2V-a8"
+    },
     "./components/list/xx.less": {
       "list": "xx__list___pfIDt"
     },
@@ -30,6 +45,24 @@
       "list": "yy__list___2wnI2",
       "uuuu": "yy__uuuu___bAQQG",
       "uuuuu": "yy__uuuuu___3K_Aw"
+    },
+    "./components/questionList/style.less": {
+      "questionList": "style__questionList___3S_8E",
+      "correct": "style__correct___1wQro",
+      "wrong": "style__wrong___3BxMr",
+      "optionList": "style__optionList___d_GmM",
+      "multiple": "style__multiple___c5ysq",
+      "radio": "style__radio___30t5m",
+      "selected": "style__selected___3Dj_H",
+      "score": "style__score___3M3jj",
+      "s1": "style__s1___C92uF",
+      "s2": "style__s2___WKvgA",
+      "s3": "style__s3___kTKCS",
+      "tips": "style__tips___y5IGn"
+    },
+    "./components/page/css/exam.less": {
+      "content": "exam__content___BhBVD",
+      "footer": "exam__footer___3IysL"
     },
     "./components/page/css/index.less": {
       "hello": "index__hello___2_7gs"

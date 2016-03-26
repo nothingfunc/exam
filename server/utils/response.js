@@ -12,6 +12,9 @@ exports.success = (res, data, msg) => {
 };
 
 exports.error = (res, err, msg) => {
+  if(typeof err == 'string') {
+    msg = msg || err;
+  }
   res.json({
     code: 500,
     data: err.stack,

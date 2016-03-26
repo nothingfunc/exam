@@ -11,7 +11,8 @@ var DefaultLayout = React.createClass({
       <html>
         <head>
           <meta charSet="utf-8"/>
-          <title>sss</title>
+          <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+          <title>{this.props.title}</title>
           <link rel="shortcut icon" href={favicon} type="image/x-icon"/>
           {
             this.props.css && this.props.css.map((css, index) => {

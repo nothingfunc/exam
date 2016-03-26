@@ -733,10 +733,11 @@ webpackJsonp([1],{
 	        'head',
 	        null,
 	        React.createElement('meta', { charSet: 'utf-8' }),
+	        React.createElement('meta', { name: 'viewport', content: 'width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no' }),
 	        React.createElement(
 	          'title',
 	          null,
-	          'sss'
+	          this.props.title
 	        ),
 	        React.createElement('link', { rel: 'shortcut icon', href: favicon, type: 'image/x-icon' }),
 	        this.props.css && this.props.css.map(function (css, index) {

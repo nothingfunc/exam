@@ -87,19 +87,6 @@
 .style__score___2matX.style__s3___2V-a8 {
   background-color: #d9534f;
 }
-.xx__list___pfIDt {
-  font-size: 15px;
-}
-.xx__list___pfIDt {
-  color: #ccc;
-}
-.yy__list___2wnI2.yy__uuuu___bAQQG {
-  font-size: 24px;
-}
-.yy__list___2wnI2.yy__uuuuu___3K_Aw {
-  color: blue;
-  border-radius: 4px;
-}
 .style__questionList___3S_8E {
   word-break: break-all;
 }
@@ -198,4 +185,19 @@
   bottom: 68px;
   width: 100%;
   color: #888;
+}
+.exam__content___BhBVD {
+  padding-bottom: 100px;
+  background-color: #f5f5f5;
+  position: relative;
+}
+.exam__footer___3IysL {
+  position: fixed;
+  height: 50px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border-top: solid 1px #eee;
+  z-index: 1000;
 }
