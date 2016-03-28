@@ -1,7 +1,6 @@
 var PACKAGE = require('../package.json');
 var express = require('express');
 var path = require('path');
-//var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -13,15 +12,14 @@ require('./model/exam');
 
 var app = express();
 
+// view engine setup
 var engine = ReactEngine.server.create({
   /*
    see the complete server options spec here:
    https://github.com/paypal/react-engine#server-options-spec
    */
 });
-
 app.engine('.jsx', engine);
-// view engine setup
 app.set('views', path.join(__dirname, '../components/page'));
 app.set('view engine', 'jsx');
 
@@ -56,13 +54,19 @@ if(global.IS_DEV) {
   global.ISOMORPHIC_ASSETS = _.pick(require('../webpack-assets'), 'styles', 'javascript');
 }
 
+// static path
 app.use(express.static(path.join(__dirname, '../public')));
+
+// 连接数据库
+require('./utils/connectDb');
 
 // routers
 app.use('/', require('./routes/index'));
 app.use('/users', require('./routes/users'));
 app.use('/canvas', require('./routes/canvas'));
-app.use('/api', require('./routes/api'))
+app.use('/api/config', require('./routes/api/config'));
+app.use('/api/Exam', require('./routes/api/exam'));
+app.use('/api/question', require('./routes/api/question'));
 
 if(!process.env.API) {
   // catch 404 and forward to error handler

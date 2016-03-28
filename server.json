@@ -1,0 +1,28 @@
+{
+  "DB_NAME": "mongodb://127.0.0.1/exam",
+  "EXAM_RULE": {
+    "0": {
+      "score": 3,
+      "count": 10
+    },
+    "1": {
+      "score": 6,
+      "count": 5
+    },
+    "2": {
+      "score": 8,
+      "count": 5
+    }
+  },
+  "EXAM_TIME_LIMIT": 10000,
+  "PASS_RULE": {
+    "intern": 30,
+    "primary": 50,
+    "senior": 70
+  },
+  "EXAM_TYPE": {
+    "common": 0,
+    "java": 1,
+    "fe": 2
+  }
+}

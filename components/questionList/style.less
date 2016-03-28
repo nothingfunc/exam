@@ -1,0 +1,110 @@
+.questionList {
+  word-break: break-all;
+  > li {
+    width: 100%;
+    padding: 10px;
+    border-bottom: 4px solid #FFF;
+    position: relative;
+    &:before {
+      content: "";
+      height: 60px;
+      width: 60px;
+      display: none;
+      bottom: 1px;
+      right: 1px;
+      z-index: 0;
+      opacity: 0.2;
+      position: absolute;
+    }
+    &.correct {
+      &:before {
+        display: block;
+        background: url('../questionList/done_notification_72px.png') no-repeat center/cover;
+      }
+    }
+    &.wrong {
+      &:before {
+        display: block;
+        background: url('../questionList/error_notification_72px.png') no-repeat center/cover;
+      }
+    }
+  }
+  > h3 {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.optionList {
+  position: relative;
+  z-index: 1;
+  &.multiple {
+    > li {
+      > .radio {
+        border-radius: 0;
+      }
+    }
+  }
+  > li {
+    position: relative;
+    padding-top: 4px;
+    text-indent: 1.5em;
+    &.selected {
+      > .radio {
+        background-color: #118611;
+        &:after {
+          content: "";
+          position: absolute;
+          height: 20%;
+          width: 40%;
+          border-bottom: 2px solid white;
+          border-left: 2px solid #fff;
+          left: 23%;
+          top: 20%;
+          transform: rotate(-50deg);
+        }
+      }
+    }
+    > .radio {
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      height: 1em;
+      width: 1em;
+      border-radius: 50%;
+      background-color: #E0E0E0;
+      vertical-align: middle;
+    }
+  }
+}
+
+.score {
+  margin-left: 4px;
+  padding: 0 4px;
+  display: inline-block;
+  font-weight: 400;
+  color: #fff;
+  vertical-align: baseline;
+  font-size: 0.75em;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0.5;
+  &.s1 {
+    background-color: #5bc0de;
+  }
+  &.s2 {
+    background-color: #f0ad4e;
+  }
+  &.s3 {
+    background-color: #d9534f;
+  }
+}
+
+.tips {
+  text-align: center;
+  position: absolute;
+  bottom: 68px;
+  width: 100%;
+  color: #888;
+}

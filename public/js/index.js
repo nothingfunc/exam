@@ -1,4 +1,4 @@
-webpackJsonp([5],{
+webpackJsonp([6],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
@@ -9,7 +9,7 @@ webpackJsonp([5],{
 	 * Created by zhengguo.chen on 2016/2/2.
 	 */
 	var boot = __webpack_require__(282);
-	var entry = __webpack_require__(383);
+	var entry = __webpack_require__(573);
 	boot(entry);
 
 /***/ },
@@ -636,10 +636,11 @@ webpackJsonp([5],{
 	        'head',
 	        null,
 	        React.createElement('meta', { charSet: 'utf-8' }),
+	        React.createElement('meta', { name: 'viewport', content: 'width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no' }),
 	        React.createElement(
 	          'title',
 	          null,
-	          'sss'
+	          this.props.title
 	        ),
 	        React.createElement('link', { rel: 'shortcut icon', href: favicon, type: 'image/x-icon' }),
 	        this.props.css && this.props.css.map(function (css, index) {
@@ -676,7 +677,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 381:
+/***/ 382:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
@@ -684,7 +685,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 383:
+/***/ 573:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -702,8 +703,8 @@ webpackJsonp([5],{
 
 	var React = __webpack_require__(27);
 	var DefaultLayout = __webpack_require__(323);
-	var XX = __webpack_require__(384);
-	var style = __webpack_require__(385);
+	var XX = __webpack_require__(574);
+	var style = __webpack_require__(575);
 
 	var Index = React.createClass({
 	  displayName: 'Index',
@@ -742,7 +743,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 384:
+/***/ 574:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -752,7 +753,7 @@ webpackJsonp([5],{
 	 */
 	var React = __webpack_require__(27);
 
-	var style = __webpack_require__(381);
+	var style = __webpack_require__(382);
 	console.log(style.list);
 
 	module.exports = React.createClass({
@@ -779,7 +780,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 385:
+/***/ 575:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

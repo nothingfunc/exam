@@ -1,4 +1,4 @@
-webpackJsonp([6],{
+webpackJsonp([7],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
@@ -9,7 +9,7 @@ webpackJsonp([6],{
 	 * Created by zhengguo.chen on 2016/2/2.
 	 */
 	var boot = __webpack_require__(282);
-	var entry = __webpack_require__(386);
+	var entry = __webpack_require__(576);
 
 	boot(entry);
 
@@ -637,10 +637,11 @@ webpackJsonp([6],{
 	        'head',
 	        null,
 	        React.createElement('meta', { charSet: 'utf-8' }),
+	        React.createElement('meta', { name: 'viewport', content: 'width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no' }),
 	        React.createElement(
 	          'title',
 	          null,
-	          'sss'
+	          this.props.title
 	        ),
 	        React.createElement('link', { rel: 'shortcut icon', href: favicon, type: 'image/x-icon' }),
 	        this.props.css && this.props.css.map(function (css, index) {
@@ -670,7 +671,7 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 386:
+/***/ 576:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -686,7 +687,7 @@ webpackJsonp([6],{
 	 */
 	//browser area
 	if (typeof window !== "undefined") {
-	  __webpack_require__(387);
+	  __webpack_require__(577);
 	}
 
 	var React = __webpack_require__(27);
@@ -717,7 +718,7 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 387:
+/***/ 577:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

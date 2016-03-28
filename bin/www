@@ -2,7 +2,6 @@
 console.time('Start time');
 
 // babel register is to slow...
-console.log(process.env.API);
 if(!process.env.API) {
   require('babel-register')({
     presets: ['es2015', 'react']
@@ -26,8 +25,6 @@ global.IS_DEV = process.env.NODE_ENV !== 'production';
 var WebpackIsomorphicTools = require('webpack-isomorphic-tools');
 
 global.webpackIsomorphicTools = new WebpackIsomorphicTools(isomorphicConfig);
-
-
 global.webpackIsomorphicTools.development(global.IS_DEV);
 global.webpackIsomorphicTools.server(path.join(__dirname, '..'), () => {
     var app = require('../server/app');
