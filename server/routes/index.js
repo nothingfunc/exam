@@ -18,42 +18,65 @@ router.get('/', function(req, res, next) {
 // 答题信息页面
 router.get('/:examId', function(req, res, next) {
   var examId = req.params.examId;
-  if(common.isExamId(examId)) {
-    examModel.getExamInfoByExamId(examId).then((content) => {
-      res.send(JSON.stringify(content));
-    });
-  } else {
+  if(!common.isExamId(examId)) {
     next();
+    return;
   }
+  var ret = (exam) => {
+    var remainTime = exam.timeLimit - (Date.now() - exam.startTimestamp);
+    exam.questions = null;
+    res.render('exam', {
+      ASSETS: global.ISOMORPHIC_ASSETS,
+      view: true,
+      remainTime: remainTime || 0,
+      title: exam.title,
+      exam: exam
+    });
+  }
+  examModel.getExamByExamId(examId).then((exam) => {
+    var remainTime = exam.timeLimit - (Date.now() - exam.startTimestamp);
+    if(remainTime <= 0 && !exam.isDone && exam.startTimestamp) {
+      examModel.calcScoreAndSave(exam).then((exam) => {
+        console.log('Force submit', exam);
+        ret(exam);
+      })
+    } else {
+      ret(exam);
+    }
+  });
 });
 
-// 开始答题
-router.get('/:examId/:command', function(req, res, next) {
+// 开始答题或继续答题
+router.get('/:examId/start', function(req, res, next) {
   var examId = req.params.examId;
-  var command = req.params.command;
-  if(common.isExamId(examId)) {
-    switch (command) {
-      // 开始答题或继续答题
-      case 'start':
-        Q.all([
-          configModel.getConfig(),
-          examModel.startExam(examId)
-        ]).then((data) => {
-          var remainTime = data[0].EXAM_TIME_LIMIT - (Date.now() - data[1].startTimestamp);
-          res.render('exam', {
-            ASSETS: global.ISOMORPHIC_ASSETS,
-            title: 'XX的试题',
-            remainTime: remainTime,
-            exam: data[1]
-          });
-        }).catch(err => console.log(err));
-        break;
-      default :
-        next();
-    }
-  } else {
+  if(!common.isExamId(examId)) {
     next();
+    return;
   }
+  examModel.startExam(examId).then((exam) => {
+    var remainTime = exam.timeLimit - (Date.now() - exam.startTimestamp);
+    res.render('exam', {
+      ASSETS: global.ISOMORPHIC_ASSETS,
+      remainTime: remainTime,
+      title: exam.title,
+      exam: exam
+    });
+  }).catch(err => console.log(err));
+  /* 现在每套题有答题时间的配置了，不再从config里取了
+  Q.all([
+    configModel.getConfig(),
+    examModel.startExam(examId)
+  ]).then((data) => {
+    var remainTime = data[0].EXAM_TIME_LIMIT - (Date.now() - data[1].startTimestamp);
+    var exam = data[1];
+    res.render('exam', {
+      ASSETS: global.ISOMORPHIC_ASSETS,
+      title: exam.title,
+      remainTime: remainTime,
+      exam: exam
+    });
+  }).catch(err => console.log(err));
+  */
 });
 
 

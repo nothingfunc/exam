@@ -39,9 +39,10 @@ module.exports = React.createClass({
       <ul className={classnames(style.questionList, {[style.isDone]: isDone})}>
         {
           questions.map((question, questionIndex) => {
+            var hasChosen = question.options.find((option) => option.chosen) !== undefined;
             return (
               <li key={question._id}
-                  className={classnames({[style.correct]: isDone && question.isCorrect, [style.wrong]: isDone && !question.isCorrect})}>
+                  className={classnames({[style.chosen]: !isDone && hasChosen, [style.correct]: isDone && question.isCorrect, [style.wrong]: isDone && !question.isCorrect})}>
                 <h3>
                   <span>{questionIndex + 1}. </span>
                   <span>{question.content}</span>
@@ -63,7 +64,7 @@ module.exports = React.createClass({
                                  }
                                  className={classnames({[style.selected]: option.chosen})}>
                         <i className={style.radio}></i>
-                        <span>{option.content}</span>
+                        <span className={classnames({[style.isAnswer]: option.answer})}>{option.content}</span>
                       </li>
                     })
                   }

@@ -14,7 +14,7 @@
       "count": 5
     }
   },
-  "EXAM_TIME_LIMIT": 10000,
+  "EXAM_TIME_LIMIT": 100000,
   "PASS_RULE": {
     "intern": 30,
     "primary": 50,

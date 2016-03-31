@@ -1,10 +1,12 @@
 .questionList {
   word-break: break-all;
   > li {
-    width: 100%;
+    width: 95%;
     padding: 10px;
-    border-bottom: 4px solid #FFF;
+    margin: 0 auto 10px;
+    background-color: #fff;
     position: relative;
+    border-radius: 4px;
     &:before {
       content: "";
       height: 60px;
@@ -15,6 +17,9 @@
       z-index: 0;
       opacity: 0.2;
       position: absolute;
+    }
+    &.chosen {
+      background-color: #D2F7D2;
     }
     &.correct {
       &:before {
@@ -48,10 +53,10 @@
   > li {
     position: relative;
     padding-top: 4px;
-    text-indent: 1.5em;
+    padding-left: 1.5em;
     &.selected {
       > .radio {
-        background-color: #118611;
+        background-color: #5bc0de;
         &:after {
           content: "";
           position: absolute;
@@ -64,6 +69,10 @@
           transform: rotate(-50deg);
         }
       }
+    }
+    > .isAnswer {
+      background: rgba(17, 134, 17, 0.6);
+      color: #fff;
     }
     > .radio {
       position: absolute;
@@ -90,6 +99,7 @@
   top: 0;
   right: 0;
   opacity: 0.5;
+  border-top-right-radius: 4px;
   &.s1 {
     background-color: #5bc0de;
   }
@@ -106,5 +116,5 @@
   position: absolute;
   bottom: 68px;
   width: 100%;
-  color: #888;
+  color: #fff;
 }

@@ -9,7 +9,7 @@ webpackJsonp([6],{
 	 * Created by zhengguo.chen on 2016/2/2.
 	 */
 	var boot = __webpack_require__(282);
-	var entry = __webpack_require__(573);
+	var entry = __webpack_require__(577);
 	boot(entry);
 
 /***/ },
@@ -677,7 +677,7 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 382:
+/***/ 384:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
@@ -685,7 +685,7 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 573:
+/***/ 577:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -703,8 +703,8 @@ webpackJsonp([6],{
 
 	var React = __webpack_require__(27);
 	var DefaultLayout = __webpack_require__(323);
-	var XX = __webpack_require__(574);
-	var style = __webpack_require__(575);
+	var XX = __webpack_require__(578);
+	var style = __webpack_require__(579);
 
 	var Index = React.createClass({
 	  displayName: 'Index',
@@ -743,7 +743,7 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 574:
+/***/ 578:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -753,7 +753,7 @@ webpackJsonp([6],{
 	 */
 	var React = __webpack_require__(27);
 
-	var style = __webpack_require__(382);
+	var style = __webpack_require__(384);
 	console.log(style.list);
 
 	module.exports = React.createClass({
@@ -780,7 +780,7 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 575:
+/***/ 579:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

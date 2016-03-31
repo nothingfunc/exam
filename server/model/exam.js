@@ -32,12 +32,14 @@ var examSchema = mongoose.Schema({
   title:           {type: String, default: ''},
   startTimestamp:  {type: Number, default: 0},
   submitTimestamp: {type: Number, default: 0},
+  timeLimit:       {type: Number, default: 15*60*1000},
   isDone:          {type: Boolean, default: false},
   correctCount:    {type: Number, default: 0},
   count:           {type: Number, default: 0},
   cost:            {type: Number, default: 0}, // seconds
   score:           {type: Number, default: 0},
   passScore:       {type: Number, default: 0},
+  totalScore:      {type: Number, default: 0},
   isPass:          {type: Boolean, default: false},
   questions:       [questionSchema]
 });
@@ -56,9 +58,13 @@ exports.createExam = (item) => {
     return Q.all(jobs).then((questionGroup) => {
       var questions = _.flatten(questionGroup);
       item.examId = common.getExamId(item.username, item.mobile, Date.now());
-      var exam = new Exam(_.pick(item, 'content', 'questions', 'examId'));
+      var exam = new Exam(_.pick(item, 'username', 'mobile', 'questions', 'passScore', 'examId', 'title', 'timeLimit'));
       exam.count = questions.length;
       exam.questions = questions;
+      exam.totalScore = questions.reduce((pre, quesiton) => {
+        pre += quesiton.score;
+        return pre;
+      }, 0);
       return exam.save();
     });
   });
@@ -78,34 +84,17 @@ exports.getExam = (id) => {
 /**
  * 通过examId获取试题
  * @param examId examId
- * @param withAnswer 是否包含答案
- * @param start 是否开始答题
  * @returns {Promise|*}
  */
-exports.getExamByExamId = (examId, withAnswer, start) => {
-  withAnswer = withAnswer || false;
+exports.getExamByExamId = (examId) => {
   var conditions = {examId : examId};
-  var update = {
-    $set: {startTimestamp: Date.now()}
-  };
-  if(start) {
-
-  } else {
-    return Exam.findOne(conditions).then((docs) => {
-      if(docs && docs.questions && !withAnswer) {
-        docs.questions.map((question) => {
-          question.answer = null;
-        });
-      }
-      return docs || null;
-    });
-  }
+  return Exam.findOne(conditions);
 };
 
 /**
  * 更新试题
  * @param examId
- *
+ * @returns {Promise|*}
  */
 exports.updateExam = (examId, updateObj) => {
   var conditions = {examId: examId};
@@ -136,7 +125,24 @@ const calcScoreAndSave = (doc) => {
     }
     return pre;
   }, 0);
+  doc.isPass = doc.score >= doc.passScore;
   return doc.save();
+};
+
+exports.calcScoreAndSave = calcScoreAndSave;
+
+/**
+ * 清除试题答案
+ * @param doc
+ * @return {*}
+ */
+const clearAnswer = (doc) => {
+  doc.questions.map((question) => {
+    question.options.map((option) => {
+      option.answer = null;
+    });
+  });
+  return doc;
 };
 
 /**
@@ -164,6 +170,9 @@ exports.updateQuestions = (examId, questionIndex, questionId, chosen) => {
     if(!doc) {
       return Q.reject('选择答案失败，未找到试题');
     }
+    if(doc.startTimestamp + doc.timeLimit <= Date.now()) {
+      return Q.reject('选择答案失败，答题时间已结束');
+    }
     var question = doc.questions[questionIndex];
     if(question && question._id == questionId) {
       _.map(question.options, (option, index) => {
@@ -184,59 +193,34 @@ exports.updateQuestions = (examId, questionIndex, questionId, chosen) => {
  * @returns {Promise}
  */
 exports.startExam = (examId) => {
-  return configModel.getConfig().then((config) => {
-    var timeLimit = config.EXAM_TIME_LIMIT;
-    // 查找试题
-    var conditions = {examId: examId};
-    return Exam.findOne(conditions).then((doc) => {
-      console.log('start exam');
-      if(doc) {
-        if(doc.isDone === true) {
-          console.log('start exam, exam is done');
-          return doc;
-        } else {
-          var now = Date.now();
-          if(doc.startTimestamp === 0) {
-            console.log('start exam, exam is start!');
-            // 开始答题
-            doc.startTimestamp = now;
-            return doc.save();
-          } else if(doc.startTimestamp + timeLimit <= now) {
-            console.log('start exam, exam is timeout.');
-            // 超时，提交试题
-            return calcScoreAndSave(doc);
-          } else {
-            console.log('start exam, exam is continue...');
-            return doc;
-          }
-        }
-      }
-      return null;
-    });
-  });
-};
-
-/**
- * 继续答题
- */
-exports.continueExam = (examId) => {
-  return configModel.getConfig().then((config) => {
-    var timeLimit = config.EXAM_TIME_LIMIT;
-    var now = Date.now();
-    var conditions = {examId: examId, isDone: false};
-    return Exam.findOne(conditions).then((doc) => {
-      console.log(doc.startTimestamp, timeLimit, now, doc.startTimestamp + timeLimit > now);
-      if(doc.startTimestamp + timeLimit > now) {
-        if(doc && doc.questions) {
-          doc.questions.map((question) => {
-            question.answer = null;
-          });
-        }
-        return doc || null;
+  // 查找试题
+  var conditions = {examId: examId};
+  return Exam.findOne(conditions).then((doc) => {
+    console.log('start exam');
+    if (doc) {
+      if (doc.isDone === true) {
+        console.log('start exam, exam is done');
+        return doc;
       } else {
-        return null;
+        var now = Date.now();
+        if (doc.startTimestamp === 0) {
+          console.log('start exam, exam is start!');
+          // 开始答题
+          doc.startTimestamp = now;
+          return doc.save().then((doc) => {
+            return clearAnswer(doc);
+          });
+        } else if (doc.startTimestamp + doc.timeLimit <= now) {
+          console.log('start exam, exam is timeout.');
+          // 超时，提交试题
+          return calcScoreAndSave(doc);
+        } else {
+          console.log('start exam, exam is continue...');
+          return clearAnswer(doc);
+        }
       }
-    });
+    }
+    return null;
   });
 };
 
@@ -248,9 +232,7 @@ exports.continueExam = (examId) => {
  */
 exports.getExamInfoByExamId = (examId) => {
   var fields = {questions: 0}
-  return Exam.find({examId : examId}, fields).then((docs) => {
-    return docs[0] || null;
-  });
+  return Exam.findOne({examId : examId}, fields);
 };
 
 /**

@@ -6,6 +6,8 @@ var classnames = require('classnames');
 var _ = require('lodash');
 var style = require('./style.less');
 
+var Dialog = require('../dialog');
+
 var api = require('../../browser/lib/api');
 
 
@@ -18,26 +20,51 @@ const getFormatTime = (time) => {
     (s ? (s + "秒"): "");
 };
 
+const getDoneStatus = (questions) => {
+  var doneCnt = questions.reduce((pre, question) => {
+    if(question.options.find((option) => option.chosen) !== undefined) {
+      pre++;
+    }
+    return pre;
+  }, 0);
+  return [doneCnt, questions.length];
+};
+
 module.exports = React.createClass({
   getInitialState() {
     return {
       remainTime: this.props.remainTime
     }
   },
-  onSubmit() {
-    if(window.confirm('确认提交？')) {
-      api.submitExam(this.props.exam.examId, {}).then(() => {
-        window.location.href = window.location.href;
-      });
-    }
+  onSubmitConfirm() {
+    var doneStatus = getDoneStatus(this.props.exam.questions);
+    this.setState({
+      confirmShow: true,
+      confirmMsg: '您完成了' + doneStatus[0] + '/' + doneStatus[1] + '，确认要提交试题？'
+    })
+  },
+  onCancel() {
+    this.setState({
+      confirmShow: false
+    })
+  },
+  onOk() {
+    this.setState({
+      confirmShow: false
+    });
+    api.submitExam(this.props.exam.examId, {}).then(() => {
+      window.location.href = '/' + this.props.exam.examId;
+    });
   },
   componentDidMount() {
+    var interval = 0;
     if(!this.props.exam.isDone) {
-      setInterval(() => {
+      interval = setInterval(() => {
         this.setState((state) => {
           state.remainTime -= 1000;
-          if(state.remainTime <= 0) {
-            console.log('submit!!');
+          if(state.remainTime <= 1000) {
+            clearInterval(interval);
+            this.onOk();
           }
           return state;
         });
@@ -63,22 +90,28 @@ module.exports = React.createClass({
     });
   },
   render() {
-    var {remainTime} = this.state;
+    var {remainTime, confirmMsg, confirmShow} = this.state;
     var {exam} = this.props;
-    var accuracy = parseInt((exam.correctCount / exam.count) * 100);
-    return <div>
+    var doneStatus = getDoneStatus(this.props.exam.questions);
+    return <div className={style.control}>
       {
         exam.isDone ? (
-          <div>
-            <span>分数：<span>{exam.score}</span></span>
-            <span>正确率：{accuracy}% ({exam.correctCount}/{exam.count})</span>
-            <span>用时：<span>{getFormatTime(exam.cost)}</span></span>
-          </div>
+          <span>
+            <span className={classnames(style.unit, style.score)}>{exam.score}</span>
+            <span className={classnames(style.unit, style.sup)}>分</span>
+            <span className={classnames(style.unit, {[style.pass]: exam.isPass, [style.fail]: !exam.isPass})}>{exam.isPass ? '通过' : '未通过'}</span>
+            <span className={style.unit}>正确：{exam.correctCount}/{exam.count}</span>
+            <span className={style.unit}>用时：{getFormatTime(exam.cost)}</span>
+          </span>
         ) : (
-          <div>
-            <span>剩余时间：{getFormatTime(remainTime)}</span>
-            <button onClick={this.onSubmit}>提交</button>
-          </div>
+          <span>
+            <span className={style.unit}>剩余时间：<strong>{getFormatTime(remainTime) || '0秒'}</strong></span>
+            <span className={style.unit}>已完成：<strong>{doneStatus[0]}/{doneStatus[1]}</strong></span>
+
+            <button className={style.submit} onClick={this.onSubmitConfirm}>我答好了</button>
+            <Dialog title="确认提交" msg={confirmMsg} hidden={!confirmShow}
+                    onOk={this.onOk} onCancel={this.onCancel}/>
+          </span>
         )
       }
     </div>

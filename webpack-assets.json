@@ -25,18 +25,27 @@
     "./components/page/css/canvas.less": {
       "myCanvas": "canvas__myCanvas___1qHam"
     },
+    "./components/dialog/style.less": {
+      "dialog": "style__dialog___2wKw5",
+      "content": "style__content___2WojL",
+      "control": "style__control___1CAxa"
+    },
     "./components/examControl/style.less": {
-      "questionList": "style__questionList___2x7sO",
-      "correct": "style__correct___f_RAq",
-      "wrong": "style__wrong___3qCuz",
-      "optionList": "style__optionList___LGt0Y",
-      "multiple": "style__multiple___fdbd9",
-      "radio": "style__radio___3SyJ9",
-      "selected": "style__selected___2ZC2M",
+      "control": "style__control___2iJg3",
+      "unit": "style__unit___3VdEd",
+      "sup": "style__sup___2E-fb",
       "score": "style__score___2matX",
-      "s1": "style__s1___yYCQO",
-      "s2": "style__s2___2kBgw",
-      "s3": "style__s3___2V-a8"
+      "pass": "style__pass___2RVJw",
+      "fail": "style__fail___2EhpA",
+      "submit": "style__submit___2PYtc"
+    },
+    "./components/ExamInfo/style.less": {
+      "wrapper": "style__wrapper___141UF",
+      "info": "style__info___d9835",
+      "highlight": "style__highlight___fgdGy",
+      "result": "style__result___1eeFg",
+      "fail": "style__fail___13c7N",
+      "start": "style__start___1faLA"
     },
     "./components/list/xx.less": {
       "list": "xx__list___pfIDt"
@@ -48,12 +57,14 @@
     },
     "./components/questionList/style.less": {
       "questionList": "style__questionList___3S_8E",
+      "chosen": "style__chosen___8w4TX",
       "correct": "style__correct___1wQro",
       "wrong": "style__wrong___3BxMr",
       "optionList": "style__optionList___d_GmM",
       "multiple": "style__multiple___c5ysq",
       "radio": "style__radio___30t5m",
       "selected": "style__selected___3Dj_H",
+      "isAnswer": "style__isAnswer___1EURn",
       "score": "style__score___3M3jj",
       "s1": "style__s1___C92uF",
       "s2": "style__s2___WKvgA",
@@ -61,8 +72,12 @@
       "tips": "style__tips___y5IGn"
     },
     "./components/page/css/exam.less": {
+      "container": "exam__container___32CCb",
+      "title": "exam__title___1dZZ6",
       "content": "exam__content___BhBVD",
-      "footer": "exam__footer___3IysL"
+      "footer": "exam__footer___3IysL",
+      "info": "exam__info___26BD8",
+      "back": "exam__back___3DCa7"
     },
     "./components/page/css/index.less": {
       "hello": "index__hello___2_7gs"
