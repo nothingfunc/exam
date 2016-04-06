@@ -1,11 +1,15 @@
 var PACKAGE = require('../package.json');
 var express = require('express');
+var expressJwt = require('express-jwt');
+var jwt = require('jsonwebtoken');
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var compression = require('compression');
 var ReactEngine = require('react-engine');
+var configModel = require('./model/config');
+var response = require('./utils/response');
 var _ = require('lodash');
 
 require('./model/exam');
@@ -60,39 +64,70 @@ app.use(express.static(path.join(__dirname, '../public')));
 // 连接数据库
 require('./utils/connectDb');
 
-// routers
-app.use('/', require('./routes/index'));
-app.use('/users', require('./routes/users'));
-app.use('/canvas', require('./routes/canvas'));
-app.use('/api/config', require('./routes/api/config'));
-app.use('/api/Exam', require('./routes/api/exam'));
-app.use('/api/question', require('./routes/api/question'));
+// setup auth
+configModel.getConfig().then((config) => {
+  var AUTH_TOKEN_COOKIE = config.AUTH_TOKEN_COOKIE;
+  var AUTH_SECRET = config.AUTH_SECRET;
+  app.use(expressJwt({
+    secret: AUTH_SECRET,
+    getToken(req) {
+      if(req.headers.authorization) {
+        return req.headers.authorization;
+      } else if (req.query && req.query.token) {
+        console.log('query auth', req.query.token)
+        return req.query.token;
+      } else {
+        console.log('cookie auth')
+        return req.cookies[AUTH_TOKEN_COOKIE];
+      }
+      return null;
+    }
+  }).unless({path: [
+    '/api/token',
+    /^\/[a-f0-9]{16}$/,
+    /^\/[a-f0-9]{16}\/start$/,
+    /^\/[a-f0-9]{16}\/submit$/,
+    /^\/api\/exam\/[a-f0-9]{16}\/choose$/,
+    /^\/api\/exam\/[a-f0-9]{16}\/submit$/
+  ]}));
+}).then(() => {
 
-if(!process.env.API) {
+  // routes
+  app.get('/protected',
+    function(req, res) {
+      res.send(req.user);
+    }
+  );
+
+  // routers
+  app.use('/', require('./routes/index'));
+  app.use('/users', require('./routes/users'));
+  app.use('/canvas', require('./routes/canvas'));
+  app.use('/api/token', require('./routes/api/token')); // 登录和注销
+  app.use('/api/config', require('./routes/api/config'));
+  app.use('/api/exam', require('./routes/api/exam'));
+  app.use('/api/question', require('./routes/api/question'));
+
   // catch 404 and forward to error handler
   app.use((req, res, next) => {
-    var err = new Error('Page Not Found');
+    var err = new Error('Page Not Found **');
     err.status = 404;
     next(err);
   });
 
-  // error handlers
-  app.use((err, req, res, next) => {
-    var errorCode = err.status || 500;
-    res.status(errorCode).render('error', {
-      code: errorCode,
-      message: err.message,
-      // if not development, no stacktraces leaked to user
-      error: IS_DEV ? JSON.stringify(err.stack) : ''
-    });
+  // auth error
+  app.use(function (err, req, res, next) {
+    var status = err.status || 500;
+    if(req.originalUrl.indexOf('/api') === 0) {
+      response.error(res, IS_DEV ? err : '');
+    } else {
+      res.status(status).render('error', {
+        code: status,
+        message: err.msg,
+        error: IS_DEV ? err.stack : ''
+      });
+    }
   });
-} else {
-  // error handlers
-  app.use((err, req, res, next) => {
-    console.log(err.stack);
-    var errorCode = err.status || 500;
-    res.status(errorCode).send(err.stack);
-  });
-}
+});
 
 module.exports = app;

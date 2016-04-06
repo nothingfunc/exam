@@ -6,7 +6,7 @@ var classnames = require('classnames');
 var _ = require('lodash');
 var style = require('./style.less');
 
-var Dialog = require('../dialog');
+var Dialog = require('../dialog/index.jsx');
 
 var api = require('../../browser/lib/api');
 

@@ -13,10 +13,14 @@ exports.success = (res, data, msg) => {
 
 exports.error = (res, err, msg) => {
   if(typeof err == 'string') {
-    msg = msg || err;
+    msg = err || msg;
+    err = {
+      status: 500,
+      stack: ''
+    }
   }
   res.json({
-    code: 500,
+    code: err.status || 500,
     data: err.stack,
     msg:  msg || 'Server occurs an error!'
   });

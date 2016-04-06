@@ -1,5 +1,7 @@
 {
   "DB_NAME": "mongodb://127.0.0.1/exam",
+  "AUTH_TOKEN_COOKIE": "__token",
+  "AUTH_SECRET": "sHa+r_ed-seCre_t",
   "EXAM_RULE": {
     "0": {
       "score": 3,
@@ -24,5 +26,7 @@
     "common": 0,
     "java": 1,
     "fe": 2
-  }
+  },
+  "ADMIN_USERNAME": "admin",
+  "ADMIN_PASSWORD": "admin"
 }
