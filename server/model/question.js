@@ -36,7 +36,7 @@ var Question = mongoose.model('question', questionSchema);
  */
 exports.createQuestion = (item) => {
   item.random = Math.random();
-  return new Question(_.pick(item, 'content', 'options', 'answer', 'score', 'random', 'examType')).save();
+  return new Question(_.pick(item, 'content', 'options', 'answer', 'score', 'random', 'examType', 'multiple')).save();
 };
 
 /**
@@ -87,7 +87,7 @@ exports.getRandomQuestionsByScore = (examType, score, limit) => {
   return configModel.getConfig().then((config) => {
     var commonType = config.EXAM_TYPE.common;
     var conditions = {examType: {$in: [examType, commonType]}, score: score, random: {$gt: rand}};
-    var fields = {content: 1, options: 1, answer: 1, score: 1};
+    var fields = {content: 1, options: 1, score: 1, multiple: 1, examType: 1};
     return Question.find(conditions, fields).limit(limit).then((items) => {
       var questions = items;
       // 如果查询数不够，再反方向查询

@@ -1,7 +1,7 @@
 /**
  * Created by zhengguo.chen on 2016/3/24.
  */
-var React = require('React');
+var React = require('react');
 var classnames = require('classnames');
 var _ = require('lodash');
 var style = require('./style.less');
@@ -45,7 +45,7 @@ module.exports = React.createClass({
                   className={classnames({[style.chosen]: !isDone && hasChosen, [style.correct]: isDone && question.isCorrect, [style.wrong]: isDone && !question.isCorrect})}>
                 <h3>
                   <span>{questionIndex + 1}. </span>
-                  <span>{question.content}</span>
+                  <span>{question.content} {question.multiple ? '（多选）' : ''}</span>
                   <span className={classnames(style.score, {
                       [style.s1]: question.score===3,
                       [style.s2]: question.score===6,

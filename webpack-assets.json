@@ -1,29 +1,34 @@
 {
   "javascript": {
-    "boot": "/js/boot.js",
-    "canvas": "/js/canvas.js",
-    "common": "/js/common.js",
-    "components": "/js/components.js",
-    "exam": "/js/exam.js",
-    "index": "/js/index.js",
-    "users": "/js/users.js"
+    "boot": "/js/boot_6657bf.js",
+    "exam": "/js/exam_3cbd0f.js",
+    "index": "/js/index_8e4ee3.js",
+    "canvas": "/js/canvas_7fa94f.js",
+    "users": "/js/users_07e101.js",
+    "components": "/js/components_f5f6b5.js",
+    "common": "/js/common_1812cc.js"
   },
   "styles": {
-    "canvas": "/css/canvas.css",
-    "common": "/css/common.css",
-    "components": "/css/components.css",
-    "exam": "/css/exam.css",
-    "index": "/css/index.css",
-    "users": "/css/users.css"
+    "exam": "/css/exam_3cbd0f.css",
+    "index": "/css/index_8e4ee3.css",
+    "canvas": "/css/canvas_7fa94f.css",
+    "users": "/css/users_07e101.css",
+    "components": "/css/components_f5f6b5.css",
+    "common": "/css/common_1812cc.css"
   },
   "assets": {
-    "./components/layouts/img/favicon.png": "/img/favicon.png",
-    "./components/page/img/favicon_5.png": "/img/favicon_5.png",
-    "./components/page/img/favicon.png": "/img/favicon.png",
+    "./components/layouts/img/favicon.png": "/img/favicon_3a68f9.png",
+    "./components/page/img/favicon_5.png": "/img/favicon_5_3a68f9.png",
     "./browser/bunny.png": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAlCAYAAABcZvm2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAWNJREFUeNrsV8sNwjAMbUqBBWACxB2pQ8AKcGALTsAJuDEFB1gBhuDAuWICmICPQh01pXWdJqEFcaglRGRbfonjPLuMc+5QwhjLGEJfZusjxZOL9akZKye9G98vPMfvsAx4qBfKwfzBL9s6uUHpI6U/u7+BKGkNb/H6umtk7MczF0HyfKS4zo/k/4AgTV8DOizrqX8oECgC+MGa8lGJp9sJDiAB8nyqYoglvJOPbP97IqoATGxWVZeXJlMQwYHA3piF8wJIblOVNBBxe3TPMLoHIKtxrbS7AAbBrA4Y5NaPAXf8LjN6wKZ0RaZOnlAFZnuXInVR4FTE6eYp0olPhhshtXsAwY3PquoAJNkIY33U7HTs7hYBwV24ItUKqDwgKF3VzAZ6k8HF+B1BMF8xRJbeJoqMXHZAAQ1kwoluURCdzepEugGEImBrIADB7I4lyfbJLlw92FKE6b5hVd+ktv4vAQYASMWxvlAAvcsAAAAASUVORK5CYII=",
+    "./components/page/img/favicon.png": "/img/favicon_3a68f9.png",
     "./components/layouts/css/common.less": "// removed by extract-text-webpack-plugin",
-    "./components/page/css/canvas.less": {
-      "myCanvas": "canvas__myCanvas___1qHam"
+    "./components/ExamInfo/style.less": {
+      "wrapper": "style__wrapper___141UF",
+      "info": "style__info___d9835",
+      "highlight": "style__highlight___fgdGy",
+      "result": "style__result___1eeFg",
+      "fail": "style__fail___13c7N",
+      "start": "style__start___1faLA"
     },
     "./components/dialog/style.less": {
       "dialog": "style__dialog___2wKw5",
@@ -39,21 +44,8 @@
       "fail": "style__fail___2EhpA",
       "submit": "style__submit___2PYtc"
     },
-    "./components/ExamInfo/style.less": {
-      "wrapper": "style__wrapper___141UF",
-      "info": "style__info___d9835",
-      "highlight": "style__highlight___fgdGy",
-      "result": "style__result___1eeFg",
-      "fail": "style__fail___13c7N",
-      "start": "style__start___1faLA"
-    },
     "./components/list/xx.less": {
       "list": "xx__list___pfIDt"
-    },
-    "./components/list/yy.less": {
-      "list": "yy__list___2wnI2",
-      "uuuu": "yy__uuuu___bAQQG",
-      "uuuuu": "yy__uuuuu___3K_Aw"
     },
     "./components/questionList/style.less": {
       "questionList": "style__questionList___3S_8E",
@@ -70,6 +62,14 @@
       "s2": "style__s2___WKvgA",
       "s3": "style__s3___kTKCS",
       "tips": "style__tips___y5IGn"
+    },
+    "./components/list/yy.less": {
+      "list": "yy__list___2wnI2",
+      "uuuu": "yy__uuuu___bAQQG",
+      "uuuuu": "yy__uuuuu___3K_Aw"
+    },
+    "./components/page/css/canvas.less": {
+      "myCanvas": "canvas__myCanvas___1qHam"
     },
     "./components/page/css/exam.less": {
       "container": "exam__container___32CCb",

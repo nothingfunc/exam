@@ -5,12 +5,13 @@
   "scripts": {
     "build-dev": "set DEBUG=exam&&set NODE_ENV=development&&webpack --progress -w --config webpack/webpack.config.js",
     "build-prod": "set DEBUG= &&set NODE_ENV=production&&webpack -p --progress --config webpack/webpack.config.js",
+    "build-prod-mac": "export DEBUG= && export NODE_ENV=production && webpack -p --progress --config webpack/webpack.config.js",
     "dev": "set DEBUG=exam&&set NODE_ENV=development&&supervisor -w server,components -e js,jsx -- ./bin/www",
     "dev-mac": "export DEBUG=exam && export NODE_ENV=development && supervisor -w server,components -e js,jsx -- ./bin/www",
     "dev-api": "set PORT=3001&&set DEBUG=exam&&set NODE_ENV=development&&set API=true&&supervisor -w server -e js -- ./bin/www",
     "dev-api-mac": "export PORT=3001 && export DEBUG=exam && export NODE_ENV=development &&  export API=true && supervisor -w server -e js -- ./bin/www",
-    "start": "set DEBUG= &&set NODE_ENV=production&&supervisor -w bin -- ./bin/www",
-    "start-mac": "export DEBUG= && export NODE_ENV=production && supervisor -w bin -- ./bin/www"
+    "start": "export PORT=80 && set DEBUG=exam &&set NODE_ENV=production&&supervisor -w bin -- ./bin/www",
+    "start-mac": "export PORT=80 && export DEBUG=exam && export NODE_ENV=production && supervisor -w bin -- ./bin/www"
   },
   "scripts-linux": {
     "build-dev": "DEBUG=exam&&NODE_ENV=development&&webpack --progress -w --config webpack/webpack.config.js",

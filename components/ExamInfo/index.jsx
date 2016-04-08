@@ -1,7 +1,7 @@
 /**
  * Created by zhengguo.chen on 2016/3/24.
  */
-var React = require('React');
+var React = require('react');
 var classnames = require('classnames');
 var _ = require('lodash');
 var style = require('./style.less');

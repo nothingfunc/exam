@@ -43,16 +43,6 @@ router.get('/list/:pageIndex/:pageSize', (req, res, next) => {
   });
 });
 
-//// 答题开始，更新选项
-//router.get('/:examId/start', (req, res, next) => {
-//  examModel.startExam(req.params.examId).then((doc) => {
-//    doc && (doc.serverTimestamp = Date.now());
-//    response.success(res, doc, 'Update chosen successfully!');
-//  }).catch((err) => {
-//    response.error(res, err);
-//  })
-//});
-
 // 答题开始，更新选项
 router.put('/:examId/choose', (req, res, next) => {
   var questionIndex = req.body.questionIndex || 0;
