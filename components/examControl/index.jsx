@@ -22,7 +22,7 @@ const getFormatTime = (time) => {
 
 const getDoneStatus = (questions) => {
   var doneCnt = questions.reduce((pre, question) => {
-    if(question.options.find((option) => option.chosen) !== undefined) {
+    if(_.find(question.options, (option) => option.chosen) !== undefined) {
       pre++;
     }
     return pre;

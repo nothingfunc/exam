@@ -1,19 +1,19 @@
 {
   "javascript": {
-    "boot": "/js/boot_6657bf.js",
-    "exam": "/js/exam_3cbd0f.js",
-    "index": "/js/index_8e4ee3.js",
-    "canvas": "/js/canvas_7fa94f.js",
-    "users": "/js/users_07e101.js",
-    "components": "/js/components_f5f6b5.js",
+    "boot": "/js/boot_2a6ccf.js",
+    "exam": "/js/exam_01d2d3.js",
+    "index": "/js/index_98f3b8.js",
+    "canvas": "/js/canvas_7edae9.js",
+    "users": "/js/users_8c6211.js",
+    "components": "/js/components_4d5cf1.js",
     "common": "/js/common_1812cc.js"
   },
   "styles": {
-    "exam": "/css/exam_3cbd0f.css",
-    "index": "/css/index_8e4ee3.css",
-    "canvas": "/css/canvas_7fa94f.css",
-    "users": "/css/users_07e101.css",
-    "components": "/css/components_f5f6b5.css",
+    "exam": "/css/exam_01d2d3.css",
+    "index": "/css/index_98f3b8.css",
+    "canvas": "/css/canvas_7edae9.css",
+    "users": "/css/users_8c6211.css",
+    "components": "/css/components_4d5cf1.css",
     "common": "/css/common_1812cc.css"
   },
   "assets": {

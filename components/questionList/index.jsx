@@ -39,7 +39,7 @@ module.exports = React.createClass({
       <ul className={classnames(style.questionList, {[style.isDone]: isDone})}>
         {
           questions.map((question, questionIndex) => {
-            var hasChosen = question.options.find((option) => option.chosen) !== undefined;
+            var hasChosen = _.find(question.options, (option) => option.chosen) !== undefined;
             return (
               <li key={question._id}
                   className={classnames({[style.chosen]: !isDone && hasChosen, [style.correct]: isDone && question.isCorrect, [style.wrong]: isDone && !question.isCorrect})}>

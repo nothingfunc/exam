@@ -1,6 +1,11 @@
 /**
  * Created by zhengguo.chen on 2016/2/2.
  */
+
+var fastClick = require('fastclick');
+console.log(document.body, fastClick);
+fastClick.attach(document.body);
+
 module.exports = function(entryModule) {
   var ReactEngineClient = require('react-engine/lib/client');
 

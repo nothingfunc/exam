@@ -186,6 +186,7 @@
   border-radius: 4px;
 }
 .style__questionList___3S_8E {
+  font-size: 1.2em;
   word-break: break-all;
 }
 .style__questionList___3S_8E > li {
@@ -245,7 +246,7 @@
   border-bottom: 2px solid white;
   border-left: 2px solid #fff;
   left: 23%;
-  top: 20%;
+  top: 23%;
   -webkit-transform: rotate(-50deg);
       -ms-transform: rotate(-50deg);
           transform: rotate(-50deg);
@@ -257,7 +258,7 @@
 .style__optionList___d_GmM > li > .style__radio___30t5m {
   position: absolute;
   left: 0;
-  top: 0.6em;
+  top: 0.5em;
   height: 1em;
   width: 1em;
   border-radius: 50%;

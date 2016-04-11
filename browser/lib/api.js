@@ -1,6 +1,7 @@
-//require('es6-promise');
-//require('whatwg-fetch');
+require('es6-promise');
+require('whatwg-fetch');
 var querystring = require('querystring');
+
 const API_PREFIX = '/api';
 const API_SUCCESS_CODE = 200;
 
