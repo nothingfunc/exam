@@ -1,20 +1,20 @@
 {
   "javascript": {
-    "boot": "/js/boot_2a6ccf.js",
-    "exam": "/js/exam_01d2d3.js",
-    "index": "/js/index_98f3b8.js",
-    "canvas": "/js/canvas_7edae9.js",
-    "users": "/js/users_8c6211.js",
-    "components": "/js/components_4d5cf1.js",
-    "common": "/js/common_1812cc.js"
+    "boot": "/js/boot_2c70b6.js",
+    "exam": "/js/exam_ee5194.js",
+    "index": "/js/index_444e1c.js",
+    "canvas": "/js/canvas_adf8c8.js",
+    "users": "/js/users_28353c.js",
+    "components": "/js/components_7557a2.js",
+    "common": "/js/common_c751e2.js"
   },
   "styles": {
-    "exam": "/css/exam_01d2d3.css",
-    "index": "/css/index_98f3b8.css",
-    "canvas": "/css/canvas_7edae9.css",
-    "users": "/css/users_8c6211.css",
-    "components": "/css/components_4d5cf1.css",
-    "common": "/css/common_1812cc.css"
+    "exam": "/css/exam_ee5194.css",
+    "index": "/css/index_444e1c.css",
+    "canvas": "/css/canvas_adf8c8.css",
+    "users": "/css/users_28353c.css",
+    "components": "/css/components_7557a2.css",
+    "common": "/css/common_c751e2.css"
   },
   "assets": {
     "./components/layouts/img/favicon.png": "/img/favicon_3a68f9.png",

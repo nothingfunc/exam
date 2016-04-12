@@ -4,6 +4,10 @@
 var PACKAGE = require('../package');
 var path = require('path');
 var glob = require( 'glob' );
+
+var autoprefixer = require('autoprefixer');
+var precss = require('precss');
+
 var webpack = require('webpack');
 const SRC_PATH = path.join(__dirname, '../browser');
 const DIST_PATH = path.join(__dirname, '../public');
@@ -56,7 +60,7 @@ module.exports = {
         exclude: /components(\\|\/)layouts/,
         loader: ExtractTextPlugin.extract('style',
         'css?modules&sourceMap&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!' +
-        'autoprefixer?browsers=last 4 version!' +
+        'postcss!' +
         'less?outputStyle=expanded&sourceMap=true&sourceMapContents=true')
       },
       {
@@ -64,7 +68,7 @@ module.exports = {
         include: /components(\\|\/)layouts/,
         loader: ExtractTextPlugin.extract('style',
         'css?sourceMap!' +
-        'autoprefixer?browsers=last 4 version!' +
+        'postcss!' +
         'less?outputStyle=expanded&sourceMap=true&sourceMapContents=true')
       },
       {test: webpackIsomorphicToolsPlugin.regular_expression('images'), loader: `url-loader?limit=1024&name=img/[name]${IS_DEV ? '' : '_[hash:6]'}.[ext]`},
@@ -74,6 +78,12 @@ module.exports = {
       { test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: `file?name=font/[name]${IS_DEV ? '' : '_[hash:6]'}.[ext]`},
       { test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: `url?limit=1000&mimetype=image/svg+xml&name=font/[name]${IS_DEV ? '' : '_[hash:6]'}.[ext]`}
     ]
+  },
+  postcss: function () {
+    return {
+      defaults: [precss, autoprefixer],
+      cleaner:  [autoprefixer({ browsers: ['last 4 versions'] })]
+    };
   },
   resolve: {
     extensions: ['', '.js', '.jsx', '.json']
