@@ -89,7 +89,9 @@ configModel.getConfig().then((config) => {
     /^\/[a-f0-9]{16}\/start$/,
     /^\/[a-f0-9]{16}\/submit$/,
     /^\/api\/exam\/[a-f0-9]{16}\/choose$/,
-    /^\/api\/exam\/[a-f0-9]{16}\/submit$/
+    /^\/api\/exam\/[a-f0-9]{16}\/submit$/,
+
+    {url: '/api/exam', methods: ['POST']} //临时放开
   ]}));
 }).then(() => {
 

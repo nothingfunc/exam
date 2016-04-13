@@ -3,7 +3,6 @@
  */
 
 var fastClick = require('fastclick');
-console.log(document.body, fastClick);
 fastClick.attach(document.body);
 
 module.exports = function(entryModule) {

@@ -53,6 +53,8 @@ module.exports = {
   // choose option
   choose: (id, params) => request(getApi('/exam/' + id + '/choose'), params, METHOD.PUT),
   // submit exam
-  submitExam: (id, params) => request(getApi('/exam/' + id + '/submit'), params, METHOD.POST)
+  submitExam: (id, params) => request(getApi('/exam/' + id + '/submit'), params, METHOD.POST),
+  // create
+  getNewExam: (params) => request(getApi('/exam'), params, METHOD.POST),
 };
 

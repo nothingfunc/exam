@@ -65,7 +65,7 @@ exports.createExam = (item) => {
         pre += quesiton.score;
         return pre;
       }, 0);
-      return exam.save();
+      return exam.save().then(clearAnswer);
     });
   });
 };

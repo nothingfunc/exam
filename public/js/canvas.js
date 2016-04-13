@@ -72,7 +72,6 @@ webpackJsonp([1],{
 	 */
 
 	var fastClick = __webpack_require__(283);
-	console.log(document.body, fastClick);
 	fastClick.attach(document.body);
 
 	module.exports = function (entryModule) {

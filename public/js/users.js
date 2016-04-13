@@ -9,7 +9,7 @@ webpackJsonp([7],{
 	 * Created by zhengguo.chen on 2016/2/2.
 	 */
 	var boot = __webpack_require__(282);
-	var entry = __webpack_require__(429);
+	var entry = __webpack_require__(430);
 
 	boot(entry);
 
@@ -25,7 +25,6 @@ webpackJsonp([7],{
 	 */
 
 	var fastClick = __webpack_require__(283);
-	console.log(document.body, fastClick);
 	fastClick.attach(document.body);
 
 	module.exports = function (entryModule) {
@@ -1524,7 +1523,7 @@ webpackJsonp([7],{
 
 /***/ },
 
-/***/ 429:
+/***/ 430:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1540,7 +1539,7 @@ webpackJsonp([7],{
 	 */
 	//browser area
 	if (typeof window !== "undefined") {
-	  __webpack_require__(430);
+	  __webpack_require__(431);
 	}
 
 	var React = __webpack_require__(27);
@@ -1571,7 +1570,7 @@ webpackJsonp([7],{
 
 /***/ },
 
-/***/ 430:
+/***/ 431:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

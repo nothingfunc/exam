@@ -13,7 +13,7 @@ body {
 
 .inputGroup {
   width: 310px;
-  margin-top: -80px;
+  margin-top: -100px;
   top: 50%;
   margin-left: -155px;
   left: 50%;
@@ -28,6 +28,7 @@ body {
   text-indent: 10px;
   background-color: #fff;
   float: left;
+  cursor: pointer;
   > span {
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
@@ -59,8 +60,6 @@ body {
     width: 100%;
     z-index: 1;
     background-color: #fff;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
     > li {
       display: block;
       height: 40px;
@@ -82,6 +81,7 @@ body {
   height: 40px;
   line-height: 40px;
   padding: 10px;
+  outline: none;
 }
 
 .inputId {
@@ -100,8 +100,6 @@ body {
   margin-left: -155px;
   left: 50%;
   position: absolute;
-
-  display: block;
   border: none;
   height: 40px;
   line-height: 40px;
@@ -109,9 +107,22 @@ body {
   transition: all 0.15s;
   background-color: #f04d46;
   color: #fff;
-  border-radius: 4px;
+  text-align: center;
   &:hover {
     text-decoration: none;
     background-color: #DA261E;
   }
 }
+
+.help {
+  margin-top: -10px;
+  top: 60%;
+  margin-left: -155px;
+  left: 50%;
+  position: absolute;
+  color: #999;
+  > a {
+    color: #4078c0;
+  }
+}
+

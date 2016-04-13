@@ -6,12 +6,9 @@ var Q = require('q');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var a = 'Express xx xxx';
   res.render('index', {
     ASSETS: global.ISOMORPHIC_ASSETS,
-    title: a,
-    name: 'Mill'+'et',
-    list: ['hi', 'yes', 'bad']
+    title: '考试啦'
   });
 });
 

@@ -39,13 +39,13 @@
       "fail": "style__fail___2EhpA",
       "submit": "style__submit___2PYtc"
     },
-    "./components/ExamInfo/style.less": {
-      "wrapper": "style__wrapper___141UF",
-      "info": "style__info___d9835",
-      "highlight": "style__highlight___fgdGy",
-      "result": "style__result___1eeFg",
-      "fail": "style__fail___13c7N",
-      "start": "style__start___1faLA"
+    "./components/examInfo/style.less": {
+      "wrapper": "style__wrapper___XldAS",
+      "info": "style__info___1MSlV",
+      "highlight": "style__highlight___2LnaW",
+      "result": "style__result___1cJYA",
+      "fail": "style__fail___1fLJ2",
+      "start": "style__start___3oiNX"
     },
     "./components/list/xx.less": {
       "list": "xx__list___pfIDt"
@@ -71,6 +71,7 @@
       "s3": "style__s3___kTKCS",
       "tips": "style__tips___y5IGn"
     },
+    "./components/typeSelect/style.less": "// removed by extract-text-webpack-plugin",
     "./components/page/css/exam.less": {
       "container": "exam__container___32CCb",
       "title": "exam__title___1dZZ6",
@@ -87,16 +88,9 @@
       "inputId": "index__inputId___2CPVd",
       "inputName": "index__inputName___3B9ym",
       "inputPhone": "index__inputPhone___3I5S9",
-      "btnStart": "index__btnStart___35Lbt"
+      "btnStart": "index__btnStart___35Lbt",
+      "help": "index__help___pZPtQ"
     },
-    "./components/page/css/users.less": "// removed by extract-text-webpack-plugin",
-    "./components/examInfo/style.less": {
-      "wrapper": "style__wrapper___XldAS",
-      "info": "style__info___1MSlV",
-      "highlight": "style__highlight___2LnaW",
-      "result": "style__result___1cJYA",
-      "fail": "style__fail___1fLJ2",
-      "start": "style__start___3oiNX"
-    }
+    "./components/page/css/users.less": "// removed by extract-text-webpack-plugin"
   }
 }

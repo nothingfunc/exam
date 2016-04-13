@@ -1,12 +1,12 @@
 /**
  * Created by zhengguo.chen on 2016/2/1.
  */
-//browser area for webpack
-
 var React = require('react');
-var DefaultLayout = require('./../layouts/default.jsx');
-var XX = require('./../list/xx.jsx');
 var classnames = require('classnames');
+var _ = require('lodash');
+
+var DefaultLayout = require('./../layouts/default.jsx');
+var api = require('./../../browser/lib/api');
 
 var style = require('./css/index.less');
 
@@ -20,14 +20,11 @@ var Index = React.createClass({
     return {
       types: TYPES,
       selectedType: TYPES[0],
-      selectOpen: false
+      selectOpen: false,
+      examId: ''
     }
   },
-  onStartClick() {
-    console.log(Date.now())
-  },
   onSelect(type, index) {
-    console.log(index)
     this.setState((state) => {
       state.selectOpen = false;
       state.selectedType = type;
@@ -38,18 +35,45 @@ var Index = React.createClass({
   onSelectOpen() {
     this.setState({selectOpen: true});
   },
+  onChange(type, value) {
+    this.setState({[type]: value});
+  },
   componentDidMount() {
     document.addEventListener('click', (e) => {
       if(e.target != this.refs.select) {
         this.setState({selectOpen: false});
       }
-      console.log(e);
+    });
+    setTimeout(() => {
+      this.refs.id.value = '';
+      this.refs.id.focus();
+    }, 0);
+  },
+  getNewExamId() {
+    api.getNewExam({
+      "examType": 1,
+      "username": "Millet",
+      "title": "Millet的测试试题",
+      "mobile": 10000,
+      "passScore": 30,
+      "timeLimit": 60*30*1000
+    }).then((content) => {
+      this.setState((state) => {
+        state = this.getInitialState();
+        state.examId = content.examId;
+        return state;
+      });
     });
   },
   render() {
     var selectOpen = this.state.selectOpen;
     var types = this.state.types;
     var selectedType = this.state.selectedType;
+    var examId = this.state.examId;
+    var startUrl = 'javascript:;';
+    if(selectedType.value == 'id') {
+      startUrl = '/' + examId;
+    }
     return (
       <DefaultLayout
         {...this.props}
@@ -68,7 +92,10 @@ var Index = React.createClass({
               </ul>
             </div>
             {
-              selectedType.value == 'id' && <input className={style.inputId} placeholder="请输入16位试题编号"/>
+              selectedType.value == 'id' && <input ref="id" value={examId}
+                                                   onKeyUp={(e) => {e.keyCode==13 && (window.location = startUrl)}}
+                                                   onChange={(e) => this.onChange('examId', e.target.value)}
+                                                   className={style.inputId} placeholder="请输入16位考试编号"/>
             }
             {
               selectedType.value == 'info' && <span>
@@ -77,8 +104,9 @@ var Index = React.createClass({
               </span>
             }
           </div>
-          <a href="javascript:;" className={style.btnStart} onClick={this.onStartClick}>开始答题</a>
-          <p>请输入姓名手机或考试编号开始答题</p>
+          <a href={startUrl} className={style.btnStart}>开始答题</a>
+
+          <div className={style.help}>没有考号？<a href="javascript:;" onClick={this.getNewExamId}>点我生成一个</a></div>
         </div>
       </DefaultLayout>
     );

@@ -8,7 +8,8 @@ webpackJsonp([4],{
 	__webpack_require__(384);
 	__webpack_require__(385);
 	__webpack_require__(386);
-	module.exports = __webpack_require__(387);
+	__webpack_require__(387);
+	module.exports = __webpack_require__(388);
 
 
 /***/ },
@@ -33,7 +34,7 @@ webpackJsonp([4],{
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
-	module.exports = {"wrapper":"style__wrapper___141UF","info":"style__info___d9835","highlight":"style__highlight___fgdGy","result":"style__result___1eeFg","fail":"style__fail___13c7N","start":"style__start___1faLA"};
+	module.exports = {"wrapper":"style__wrapper___XldAS","info":"style__info___1MSlV","highlight":"style__highlight___2LnaW","result":"style__result___1cJYA","fail":"style__fail___1fLJ2","start":"style__start___3oiNX"};
 
 /***/ },
 
@@ -58,6 +59,13 @@ webpackJsonp([4],{
 
 	// removed by extract-text-webpack-plugin
 	module.exports = {"questionList":"style__questionList___3S_8E","chosen":"style__chosen___8w4TX","correct":"style__correct___1wQro","wrong":"style__wrong___3BxMr","optionList":"style__optionList___d_GmM","multiple":"style__multiple___c5ysq","radio":"style__radio___30t5m","selected":"style__selected___3Dj_H","isAnswer":"style__isAnswer___1EURn","score":"style__score___3M3jj","s1":"style__s1___C92uF","s2":"style__s2___WKvgA","s3":"style__s3___kTKCS","tips":"style__tips___y5IGn"};
+
+/***/ },
+
+/***/ 388:
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 
