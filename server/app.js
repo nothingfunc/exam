@@ -84,6 +84,7 @@ configModel.getConfig().then((config) => {
     }
   }).unless({path: [
     '/api/token',
+    /^\/?$/,
     /^\/[a-f0-9]{16}$/,
     /^\/[a-f0-9]{16}\/start$/,
     /^\/[a-f0-9]{16}\/submit$/,

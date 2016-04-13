@@ -5,7 +5,7 @@ var React = require('react');
 var DefaultLayout = require('./../layouts/default.jsx');
 var QuestionList = require('../questionList/index.jsx');
 var ExamControl = require('../examControl/index.jsx');
-var ExamInfo = require('../ExamInfo/index.jsx');
+var ExamInfo = require('../examInfo/index.jsx');
 var style = require('./css/exam.less');
 
 var Exam = React.createClass({

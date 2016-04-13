@@ -1,7 +1,117 @@
-div {
-  font-size: 20+4px;
+body {
+  background-color: #f1f1f1;
 }
 
-.hello {
-  background: url('../img/favicon.png') no-repeat;
+.container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 1.2em;
+}
+
+.inputGroup {
+  width: 310px;
+  margin-top: -80px;
+  top: 50%;
+  margin-left: -155px;
+  left: 50%;
+  position: absolute;
+}
+
+.selectType {
+  display: inline-block;
+  width: 70px;
+  position: relative;
+  text-align: left;
+  text-indent: 10px;
+  background-color: #fff;
+  float: left;
+  > span {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    position: relative;
+    display: block;
+    height: 40px;
+    line-height: 40px;
+    &:after {
+      content: "";
+      position: absolute;
+      height: 0;
+      width: 0;
+      right: 10px;
+      top: 18px;
+      border: 5px solid transparent;
+      border-top: 5px solid #ccc;
+    }
+  }
+  &.open {
+    > ul {
+      display: block;
+    }
+  }
+  > ul {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    background-color: #fff;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    > li {
+      display: block;
+      height: 40px;
+      line-height: 40px;
+      cursor: pointer;
+      &:hover {
+        background-color: #f9f9f9;
+      }
+    }
+  }
+}
+
+.inputId,
+.inputName,
+.inputPhone {
+  float: left;
+  border: none;
+  border-left: 1px solid #f1f1f1;
+  height: 40px;
+  line-height: 40px;
+  padding: 10px;
+}
+
+.inputId {
+  width: 240px;
+}
+
+.inputName,
+.inputPhone {
+  width: 120px;
+}
+
+.btnStart {
+  width: 310px;
+  margin-top: -30px;
+  top: 50%;
+  margin-left: -155px;
+  left: 50%;
+  position: absolute;
+
+  display: block;
+  border: none;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 10px;
+  transition: all 0.15s;
+  background-color: #f04d46;
+  color: #fff;
+  border-radius: 4px;
+  &:hover {
+    text-decoration: none;
+    background-color: #DA261E;
+  }
 }
