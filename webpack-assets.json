@@ -1,30 +1,27 @@
 {
   "javascript": {
-    "boot": "/js/boot.js",
-    "canvas": "/js/canvas.js",
-    "common": "/js/common.js",
-    "components": "/js/components.js",
-    "exam": "/js/exam.js",
-    "index": "/js/index.js",
-    "users": "/js/users.js"
+    "boot": "/js/boot_fa971c.js",
+    "exam": "/js/exam_c716e3.js",
+    "index": "/js/index_e753fc.js",
+    "canvas": "/js/canvas_8f9356.js",
+    "users": "/js/users_d9d601.js",
+    "components": "/js/components_bb1baa.js",
+    "common": "/js/common_c751e2.js"
   },
   "styles": {
-    "canvas": "/css/canvas.css",
-    "common": "/css/common.css",
-    "components": "/css/components.css",
-    "exam": "/css/exam.css",
-    "index": "/css/index.css",
-    "users": "/css/users.css"
+    "exam": "/css/exam_c716e3.css",
+    "index": "/css/index_e753fc.css",
+    "canvas": "/css/canvas_8f9356.css",
+    "users": "/css/users_d9d601.css",
+    "components": "/css/components_bb1baa.css",
+    "common": "/css/common_c751e2.css"
   },
   "assets": {
-    "./components/layouts/img/favicon.png": "/img/favicon.png",
-    "./components/page/img/favicon_5.png": "/img/favicon_5.png",
-    "./components/page/img/favicon.png": "/img/favicon.png",
+    "./components/layouts/img/favicon.png": "/img/favicon_3a68f9.png",
     "./browser/bunny.png": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAlCAYAAABcZvm2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAWNJREFUeNrsV8sNwjAMbUqBBWACxB2pQ8AKcGALTsAJuDEFB1gBhuDAuWICmICPQh01pXWdJqEFcaglRGRbfonjPLuMc+5QwhjLGEJfZusjxZOL9akZKye9G98vPMfvsAx4qBfKwfzBL9s6uUHpI6U/u7+BKGkNb/H6umtk7MczF0HyfKS4zo/k/4AgTV8DOizrqX8oECgC+MGa8lGJp9sJDiAB8nyqYoglvJOPbP97IqoATGxWVZeXJlMQwYHA3piF8wJIblOVNBBxe3TPMLoHIKtxrbS7AAbBrA4Y5NaPAXf8LjN6wKZ0RaZOnlAFZnuXInVR4FTE6eYp0olPhhshtXsAwY3PquoAJNkIY33U7HTs7hYBwV24ItUKqDwgKF3VzAZ6k8HF+B1BMF8xRJbeJoqMXHZAAQ1kwoluURCdzepEugGEImBrIADB7I4lyfbJLlw92FKE6b5hVd+ktv4vAQYASMWxvlAAvcsAAAAASUVORK5CYII=",
+    "./components/page/img/favicon.png": "/img/favicon_3a68f9.png",
+    "./components/page/img/favicon_5.png": "/img/favicon_5_3a68f9.png",
     "./components/layouts/css/common.less": "// removed by extract-text-webpack-plugin",
-    "./components/page/css/canvas.less": {
-      "myCanvas": "canvas__myCanvas___1qHam"
-    },
     "./components/dialog/style.less": {
       "dialog": "style__dialog___2wKw5",
       "content": "style__content___2WojL",
@@ -47,14 +44,6 @@
       "fail": "style__fail___1fLJ2",
       "start": "style__start___3oiNX"
     },
-    "./components/list/xx.less": {
-      "list": "xx__list___pfIDt"
-    },
-    "./components/list/yy.less": {
-      "list": "yy__list___2wnI2",
-      "uuuu": "yy__uuuu___bAQQG",
-      "uuuuu": "yy__uuuuu___3K_Aw"
-    },
     "./components/questionList/style.less": {
       "questionList": "style__questionList___3S_8E",
       "chosen": "style__chosen___8w4TX",
@@ -71,7 +60,17 @@
       "s3": "style__s3___kTKCS",
       "tips": "style__tips___y5IGn"
     },
-    "./components/typeSelect/style.less": "// removed by extract-text-webpack-plugin",
+    "./components/list/xx.less": {
+      "list": "xx__list___pfIDt"
+    },
+    "./components/list/yy.less": {
+      "list": "yy__list___2wnI2",
+      "uuuu": "yy__uuuu___bAQQG",
+      "uuuuu": "yy__uuuuu___3K_Aw"
+    },
+    "./components/page/css/canvas.less": {
+      "myCanvas": "canvas__myCanvas___1qHam"
+    },
     "./components/page/css/exam.less": {
       "container": "exam__container___32CCb",
       "title": "exam__title___1dZZ6",
@@ -91,6 +90,7 @@
       "btnStart": "index__btnStart___35Lbt",
       "help": "index__help___pZPtQ"
     },
-    "./components/page/css/users.less": "// removed by extract-text-webpack-plugin"
+    "./components/page/css/users.less": "// removed by extract-text-webpack-plugin",
+    "./components/typeSelect/style.less": "// removed by extract-text-webpack-plugin"
   }
 }
